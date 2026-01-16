@@ -1,12 +1,15 @@
 // import vm from 'node:vm';
-import { dog } from 'src/aided/dog';
-
-import { ConfigOfFile } from './type';
 import { unlinkSync, writeFileSync } from 'node:fs';
-import { pathJoin } from 'a-node-tools';
 import { getRandomString } from 'a-js-tools';
+import { pathJoin } from 'a-node-tools';
 
-/** 通过 js 文件获配置 */
+import { dog } from '../aided/dog';
+import { ConfigOfFile } from './type';
+
+/**
+ * 通过 js 文件获配置
+ * @param str
+ */
 export async function getTextOfJsFile(str: string) {
   dog('待解析的文本', str);
   /**  文件路径  */
@@ -29,7 +32,6 @@ export async function getTextOfJsFile(str: string) {
     return null;
   }
 
-  return null;
   // try {
   //   /**  ES 模块的导出需要包裹在函数中，并通过返回值传递  */
   //   const wrappedCode = `

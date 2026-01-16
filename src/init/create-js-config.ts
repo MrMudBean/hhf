@@ -1,7 +1,10 @@
 import { writeFileSync } from 'node:fs';
-import { configFileStartName } from 'src/aided/config-file-start-name';
+import { configFileStartName } from '../aided/config-file-start-name';
 
-/**  构建 js 配置文件  */
+/**
+ *  构建 js 配置文件
+ * @param cwd
+ */
 export function createJsConfigFile(cwd: string) {
   const data = `/**  请勿在函数体外添加非注释内容  */
 // 配置项 https://earthnut.dev/npm/hhf/

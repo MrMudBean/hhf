@@ -2,13 +2,9 @@
  * 该文件为开发文件，仅在开发环境使用。用于开发的热更新
  */
 import { watch, statSync } from 'node:fs';
+import { ArgsMap } from 'a-command';
 import { throttle } from 'a-js-tools';
-import { hotData } from './data-store';
-import { initOptions } from './init-options';
-import { createChild, killChild } from './chidManage';
-import { beforeRestart } from './beforeRestart';
 import { _p, pathJoin } from 'a-node-tools';
-import checkSkip from './checkSkip';
 import {
   brightYellowPen,
   cyanPen,
@@ -16,15 +12,22 @@ import {
   redPen,
   yellowPen,
 } from 'color-pen';
-import { ArgsMapType } from 'a-command';
-import { CommandParam } from './aided/type';
-import { getTime } from './util';
 import { dog } from './aided/dog';
+import { CommandParam } from './aided/type';
+import { beforeRestart } from './beforeRestart';
+import checkSkip from './checkSkip';
+import { createChild, killChild } from './chidManage';
+import { hotData } from './data-store';
+import { initOptions } from './init-options';
+import { getTime } from './util';
 
 /**  一个简单的热启动 */
 export class HotDevelop {
-  /**   初始化项目 */
-  constructor(args: ArgsMapType<CommandParam>) {
+  /**
+   *   初始化项目
+   * @param args
+   */
+  constructor(args: ArgsMap<CommandParam>) {
     this.run();
     /**   监听配置文件的变化 */
     watch(

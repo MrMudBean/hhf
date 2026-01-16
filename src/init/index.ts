@@ -1,12 +1,15 @@
+import { ArgsMapItem, question } from 'a-command';
 import { _p, fileExist } from 'a-node-tools';
-import { ArgsMapItemType, question } from 'a-command';
-import { noExtension } from './no-extension';
+import { configFileStartName } from '../aided/config-file-start-name';
+import { dog } from '../aided/dog';
 import { createConfigFile } from './create-config-file';
-import { dog } from 'src/aided/dog';
-import { configFileStartName } from 'src/aided/config-file-start-name';
+import { noExtension } from './no-extension';
 
-/**  初始化配置文件 */
-export async function initConfig(data: ArgsMapItemType<'js' | 'json' | 'ts'>) {
+/**
+ *  初始化配置文件
+ * @param data
+ */
+export async function initConfig(data: ArgsMapItem<'js' | 'json' | 'ts'>) {
   // 初始化 js 配置文件
   return (
     (data.js && (await testFileExist('js'), 1)) ||
@@ -19,7 +22,10 @@ export async function initConfig(data: ArgsMapItemType<'js' | 'json' | 'ts'>) {
   );
 }
 
-/** 测试文件是否存在  */
+/**
+ * 测试文件是否存在
+ * @param extension
+ */
 async function testFileExist(extension: string = 'json') {
   const fileName = `${configFileStartName}${extension}`,
     fileInfo = fileExist(fileName);

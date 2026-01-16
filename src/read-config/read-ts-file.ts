@@ -1,9 +1,9 @@
+import { readFileSync } from 'node:fs';
 import { _p } from 'a-node-tools';
 import { yellowPen } from 'color-pen';
-import { readFileSync } from 'node:fs';
-import { configFileStartName } from 'src/aided/config-file-start-name';
-import { dog } from 'src/aided/dog';
-import { hotData } from 'src/data-store';
+import { configFileStartName } from '../aided/config-file-start-name';
+import { dog } from '../aided/dog';
+import { hotData } from '../data-store/index';
 import { getTextOfJsFile } from './get-text-of-fs-file';
 
 /**  读取 ts 配置文件  */

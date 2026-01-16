@@ -1,6 +1,6 @@
 import { _p, pathJoin, runOtherCode } from 'a-node-tools';
-import { hotData } from './data-store';
 import { dog } from './aided/dog';
+import { hotData } from './data-store';
 
 /** 执行代码之前其他的操作  */
 export async function beforeRestart() {

@@ -1,9 +1,12 @@
-import { writeJsonFile } from 'a-node-tools';
-import { configFileStartName } from 'src/aided/config-file-start-name';
+import { writeJsonFileSync } from 'a-node-tools';
+import { configFileStartName } from '../aided/config-file-start-name';
 
-/** 新增配置文件  */
+/**
+ * 新增配置文件
+ * @param cwd
+ */
 export function createJsonConfigFile(cwd: string) {
-  writeJsonFile(configFileStartName + 'json', {
+  writeJsonFileSync(configFileStartName + 'json', {
     base: '..',
     watch: ['${cwd}'],
     skip: ['dist', '.eg'],

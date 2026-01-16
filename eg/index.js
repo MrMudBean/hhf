@@ -1,4 +1,4 @@
-const { stdout, stdin } = process;
+const { stdin } = process;
 
 console.log('i am run');
 

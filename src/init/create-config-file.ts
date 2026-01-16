@@ -6,7 +6,10 @@ import { createTsConfigFile } from './create-ts-config';
 const initData = {
   cwd: pathBasename(process.cwd()),
 };
-/** 根据后缀调用相关的创建配置文件  */
+/**
+ * 根据后缀调用相关的创建配置文件
+ * @param extension
+ */
 export function createConfigFile(extension: string = 'json') {
   const { cwd } = initData;
   switch (extension) {

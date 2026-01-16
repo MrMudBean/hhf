@@ -1,10 +1,10 @@
 import { ChildProcessWithoutNullStreams } from 'child_process';
-import { isArray, isString, typeOf } from 'a-type-of-js';
 import { FSWatcher } from 'node:fs';
+import { ArgsMap } from 'a-command';
 import { isWindows } from 'a-node-tools';
+import { isArray, isString, typeOf } from 'a-type-of-js';
+import { CommandParam } from '../aided/type';
 import { DefineOptions } from './type';
-import { CommandParam } from 'src/aided/type';
-import { ArgsMapType } from 'a-command';
 /**
  * 初始化的参数们
  */
@@ -32,7 +32,7 @@ class HotData {
   }
 
   /**  设置初始化参数  */
-  set initArg(v: ArgsMapType<CommandParam>) {
+  set initArg(v: ArgsMap<CommandParam>) {
     initArgData(v);
   }
 
@@ -107,8 +107,11 @@ class HotData {
   }
 }
 
-/** 初始化初始化数据 */
-function initArgData(v: ArgsMapType<CommandParam>) {
+/**
+ * 初始化初始化数据
+ * @param v
+ */
+function initArgData(v: ArgsMap<CommandParam>) {
   if (typeOf(v) != 'object') return;
 
   if (isString(v.base)) {

@@ -47,7 +47,7 @@ function build() {
   cd ../
 }
 build
-node scripts/change-name.js
-build
+# node scripts/change-name.js
+# build
 echo "🚀🚀  发布成功，完结 🎉🎉 撒花 🎉🎉"
 

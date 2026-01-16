@@ -1,7 +1,8 @@
-import { command } from 'src/aided/command';
 import { _p, fileExist } from 'a-node-tools';
+
+import { command } from '../aided/command';
+import { configFileStartName } from '../aided/config-file-start-name';
 import { createConfigFile } from './create-config-file';
-import { configFileStartName } from 'src/aided/config-file-start-name';
 
 /** 没有指定配置文件类型  */
 export async function noExtension() {

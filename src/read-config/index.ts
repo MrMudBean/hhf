@@ -1,10 +1,10 @@
-import { fileExist, readFileToJsonSync } from 'a-node-tools';
 import { readFileSync } from 'node:fs';
-import { hotData } from '../data-store';
-import { dog } from '../aided/dog';
+import { fileExist, readFileToJsonSync } from 'a-node-tools';
 import { configFileStartName } from '../aided/config-file-start-name';
-import { readTsFile } from './read-ts-file';
+import { dog } from '../aided/dog';
+import { hotData } from '../data-store';
 import { getTextOfJsFile } from './get-text-of-fs-file';
+import { readTsFile } from './read-ts-file';
 import { ConfigOfFile } from './type';
 
 /**      读取配置文件   */

@@ -1,9 +1,9 @@
 import { spawn } from 'node:child_process';
-import { hotData } from './data-store';
+import { resolve } from 'node:path';
 import { _p, fileExist } from 'a-node-tools';
 import { bluePen, yellowPen } from 'color-pen';
 import { dog } from './aided/dog';
-import { resolve } from 'node:path';
+import { hotData } from './data-store';
 const { stdin, stdout } = process;
 
 /** 杀死那个进程 */
@@ -73,12 +73,18 @@ export async function createChild() {
     _p('\n 创建子线程失败');
   }
 }
-/** 子进程向父进程写入 */
+/**
+ * 子进程向父进程写入
+ * @param data
+ */
 function childToParent(data: Buffer) {
   stdout.write(data.toString());
 }
 
-/** 父进程向子进程写入 */
+/**
+ * 父进程向子进程写入
+ * @param data
+ */
 function parentToChild(data: Buffer) {
   hotData.childProcess.stdin.write(data.toString());
 }

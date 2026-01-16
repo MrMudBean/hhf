@@ -1,7 +1,5 @@
-import { bluePen } from 'color-pen';
-import { hotData } from './data-store';
-import { readConfig } from './read-config';
-import { DefineOptions } from './data-store/type';
+import { enArr } from 'a-js-tools';
+import { _p } from 'a-node-tools';
 import {
   isArray,
   isEmptyObject,
@@ -10,9 +8,11 @@ import {
   isString,
   isUndefined,
 } from 'a-type-of-js';
+import { bluePen } from 'color-pen';
 import { dog } from './aided/dog';
-import { _p } from 'a-node-tools';
-import { enArr } from 'a-js-tools';
+import { hotData } from './data-store';
+import { DefineOptions } from './data-store/type';
+import { readConfig } from './read-config';
 
 /** 获取自定义配置，这里对用户的自定义配置文件的内容进行处理 */
 export async function initOptions() {
@@ -75,7 +75,10 @@ export async function initOptions() {
   return true;
 }
 
-/**  设置配置参数的数据  */
+/**
+ *  设置配置参数的数据
+ * @param defaultOption
+ */
 function setOptionsData(defaultOption: DefineOptions) {
   if (isUndefined(hotData.options)) {
     hotData.options = {} as DefineOptions;

@@ -6,27 +6,32 @@ import cleanup from 'rollup-plugin-cleanup';
 import copy from 'rollup-plugin-copy';
 import terser from '@rollup/plugin-terser';
 import { external } from '@qqi/rollup-external';
+import license from 'rollup-plugin-license';
 
 export default {
-  input: './bin.ts',
-  output: {
-    format: 'es',
-    entryFileNames: '[name].mjs',
-    preserveModules: false,
-    sourcemap: false,
-    exports: 'named',
-    dir: 'dist/',
+  input: {
+    index: './src/bin.ts', // 默认：聚合导出入口
   },
+  output: ['es'].map(e => ({
+    format: e, // ESM 模式
+    entryFileNames: 'bin.js', // 打包文件名
+    preserveModules: false, // 保留独立模块结构（关键）
+    // preserveModulesRoot: 'src', // 保持 src 目录结构
+    sourcemap: false, // 正式环境：关闭 source map
+    // exports: 'named', // 导出模式
+    dir: `dist/`,
+  })),
   external: external({
     include: [
-      'src/hot-class',
-      'src/actions/initConfig',
-      'src/aided/command',
-      'src/init',
-      'src/aided/dog',
-      'src/aided/config-file-start-name',
-      'src/data-store',
-      'src/aided/qqi',
+      'a-node-tools',
+      '@qqi/log',
+      'a-command',
+      'a-js-tools',
+      'color-pen',
+      'a-type-of-js',
+      '@color-pen/static',
+      'a-type-of-js/isNumber',
+      'a-type-of-js/isFunction',
     ],
     ignore: ['node:', 'typescript'],
   }),
@@ -37,7 +42,11 @@ export default {
     typescript({}),
     // 去除无用代码
     cleanup(),
-    terser(),
+    terser({
+      format: {
+        comments: false, // 移除所有注释
+      },
+    }),
     copy({
       targets: [
         {
@@ -49,6 +58,23 @@ export default {
           dest: 'dist',
         },
       ],
+    }),
+    license({
+      thirdParty: {
+        allow: '(MIT OR Apache-2.0 OR BSD-3-Clause)', // 仅允许这些许可证依赖
+        output: {
+          file: 'dist/THIRD-PARTY-LICENSES.txt',
+          template: dependencies =>
+            `THIRD-PARTY LICENSE\n${'='.repeat(50)}\n\n`.concat(
+              dependencies
+                ?.map(
+                  dep =>
+                    `${dep.name} (${dep.version})\n${'-'.repeat(30)}\n${dep.licenseText}\n`,
+                )
+                .join('\n'),
+            ),
+        },
+      },
     }),
   ],
 };

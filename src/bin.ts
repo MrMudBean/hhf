@@ -1,9 +1,10 @@
 #! /usr/bin/env node
-import { HotDevelop } from 'src/hot-class';
-import { initConfig } from 'src/init';
-import { command } from 'src/aided/command';
-import { dog } from 'src/aided/dog';
 import { _p } from 'a-node-tools';
+import { command } from './aided/command';
+import { dog } from './aided/dog';
+import { HotDevelop } from './hot-class';
+import { initConfig } from './init/index';
+
 const { stdin } = process;
 
 try {
